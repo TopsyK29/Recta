@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Clone - Play Now!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐦 Flappy Bird</h1>
+            <div id="userInfo" class="user-info hidden">
+                <span id="userName"></span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+            <div id="authButtons" class="auth-buttons">
+                <button id="loginBtn" class="btn btn-primary">Login</button>
+                <button id="signupBtn" class="btn btn-primary">Sign Up</button>
+            </div>
+        </header>
+
+        <div id="mainMenu" class="screen">
+            <div class="menu-content">
+                <h2>Welcome to Flappy Bird!</h2>
+                <div class="menu-buttons">
+                    <button id="startGameBtn" class="btn btn-large btn-success">Start Game</button>
+                    <button id="viewLeaderboardBtn" class="btn btn-large btn-info">Leaderboard</button>
+                </div>
+                <div class="instructions">
+                    <h3>How to Play</h3>
+                    <p>Press <strong>SPACE</strong> or <strong>Click</strong> to make the bird fly</p>
+                    <p>Avoid hitting the pipes and the ground</p>
+                    <p>Score points by passing through pipes</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameScreen" class="screen hidden">
+            <div class="game-header">
+                <div id="currentScore" class="score-display">Score: 0</div>
+                <button id="pauseBtn" class="btn btn-small">Pause</button>
+            </div>
+            <canvas id="gameCanvas" width="400" height="600"></canvas>
+        </div>
+
+        <div id="gameOverScreen" class="screen hidden">
+            <div class="game-over-content">
+                <h2>Game Over!</h2>
+                <div class="final-score">
+                    <p>Your Score: <span id="finalScore">0</span></p>
+                    <p id="personalBestDisplay" class="hidden">Personal Best: <span id="personalBest">0</span></p>
+                </div>
+                <div id="scoreSubmission" class="hidden">
+                    <button id="submitScoreBtn" class="btn btn-success">Submit Score</button>
+                    <p class="submission-status" id="submissionStatus"></p>
+                </div>
+                <div class="game-over-buttons">
+                    <button id="playAgainBtn" class="btn btn-large btn-success">Play Again</button>
+                    <button id="backToMenuBtn" class="btn btn-large btn-secondary">Main Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="leaderboardScreen" class="screen hidden">
+            <div class="leaderboard-content">
+                <h2>🏆 Leaderboard</h2>
+                <div class="leaderboard-filters">
+                    <button class="filter-btn active" data-period="all">All Time</button>
+                    <button class="filter-btn" data-period="weekly">This Week</button>
+                    <button class="filter-btn" data-period="daily">Today</button>
+                </div>
+                <div id="leaderboardList" class="leaderboard-list">
+                    <div class="loading">Loading...</div>
+                </div>
+                <button id="backFromLeaderboardBtn" class="btn btn-large btn-secondary">Back to Menu</button>
+            </div>
+        </div>
+
+        <div id="authModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="loginForm" class="auth-form">
+                    <h2>Login</h2>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" id="loginUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <div class="form-error" id="loginError"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <p class="form-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+                </div>
+                <div id="signupForm" class="auth-form hidden">
+                    <h2>Sign Up</h2>
+                    <form id="signupFormElement">
+                        <div class="form-group">
+                            <label for="signupUsername">Username</label>
+                            <input type="text" id="signupUsername" required minlength="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" required minlength="6">
+                        </div>
+                        <div class="form-error" id="signupError"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </form>
+                    <p class="form-switch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
